@@ -305,6 +305,13 @@
     animation: none;
   }
 
+  /* Scroll reveals start hidden in the SSR HTML for hydration parity. Force
+     them visible here so reduced-motion users never depend on JavaScript. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   html {
     scroll-behavior: auto !important;
   }

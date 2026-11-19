@@ -233,6 +233,33 @@ test.describe("Mobile navigation", () => {
   });
 });
 
+test.describe("Reduced motion", () => {
+  test.use({ reducedMotion: "reduce" });
+
+  test("hydrates cleanly and keeps revealed content visible", async ({ page }) => {
+    const errors: string[] = [];
+    page.on("console", (message) => {
+      if (message.type() === "error") errors.push(message.text());
+    });
+    page.on("pageerror", (error) => errors.push(String(error)));
+
+    for (const route of ["/", "/work", "/work/fastq"]) {
+      await page.goto(route);
+      await expect(page.locator("h1").first()).toBeVisible();
+      await page.waitForTimeout(1200);
+
+      const opacity = await page
+        .locator("[data-reveal]")
+        .first()
+        .evaluate((element) => getComputedStyle(element).opacity);
+      expect(opacity, `${route} reveal is visible`).toBe("1");
+    }
+
+    expect(errors.join("\n")).not.toMatch(/hydrat|did not match|hydration/i);
+    expect(errors, errors.join("\n")).toHaveLength(0);
+  });
+});
+
 test.describe("Theme", () => {
   test("toggle switches to dark mode and persists", async ({ page }) => {
     await page.goto("/");

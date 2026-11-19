@@ -90,7 +90,8 @@ export function ProjectImage({
           alt={label}
           fill
           sizes={sizes}
-          preload={preload}
+          loading={preload ? "eager" : undefined}
+          fetchPriority={preload ? "high" : undefined}
           className="object-cover object-top"
           onError={() => setFailed(true)}
         />

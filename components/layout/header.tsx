@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
 import { site } from "@/content/site";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "cn";
 import { ThemeToggle } from "./theme-toggle";
@@ -19,7 +20,7 @@ function isActivePath(pathname: string, href: string): boolean {
 
 export function Header() {
   const pathname = usePathname();
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = usePrefersReducedMotion();
   // Tie the menu to the route it was opened on: navigating closes it without
   // needing a state-syncing effect.
   const [openForPath, setOpenForPath] = useState<string | null>(null);

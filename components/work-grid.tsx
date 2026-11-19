@@ -1,10 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import type { Project, ProjectCategory } from "@/content/types";
 import { projectCategories } from "@/content/projects";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 import { ProjectCard } from "@/components/project-card";
 import { cn } from "cn";
 
@@ -14,7 +15,7 @@ const filters: readonly Filter[] = ["All", ...projectCategories];
 
 export function WorkGrid({ projects }: { projects: readonly Project[] }) {
   const [filter, setFilter] = useState<Filter>("All");
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = usePrefersReducedMotion();
 
   const visible = useMemo(
     () =>
@@ -72,16 +73,17 @@ export function WorkGrid({ projects }: { projects: readonly Project[] }) {
 
       <motion.ul layout className="mt-10 grid gap-10 sm:grid-cols-2 lg:gap-8">
         <AnimatePresence mode="popLayout" initial={false}>
-          {visible.map((project) => (
+          {visible.map((project, index) => (
             <motion.li
+              data-reveal=""
               key={project.slug}
               layout
-              initial={reduceMotion ? false : { opacity: 0, scale: 0.97 }}
+              initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             >
-              <ProjectCard project={project} />
+              <ProjectCard project={project} preload={index === 0} />
             </motion.li>
           ))}
         </AnimatePresence>

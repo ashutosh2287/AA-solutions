@@ -205,7 +205,7 @@ export default function HomePage() {
 
           <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-8">
             <Reveal className="lg:col-span-2">
-              <ProjectCard project={lead} priorityLayout />
+              <ProjectCard project={lead} priorityLayout preload />
             </Reveal>
             {rest.map((project, index) => (
               <Reveal key={project.slug} delay={index * 0.06}>
