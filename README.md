@@ -253,7 +253,10 @@ These are intentionally visible placeholders — search for `TODO` to find them 
 
 - [ ] `content/site.ts` — real email, WhatsApp number, location, social links and
       founding year.
-- [ ] `content/about.ts` — founder name, role, bio, photo (`/public/team/`).
+- [ ] `content/about.ts` — founder name, role, bio, photo (`/public/team/`) and
+      "Based in" fact.
+- [ ] `content/case-studies/*.mdx` — original brief and measurable outcome for the
+      fastQ and KL Boox House case studies.
 - [ ] `content/privacy.ts` — effective date, privacy contact email; **legal review**.
 - [ ] `content/projects.ts` — challenge, solution, tech stack and results for each
       project, once confirmed with the client.
