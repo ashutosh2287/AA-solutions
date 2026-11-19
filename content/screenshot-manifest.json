@@ -1,0 +1,26 @@
+{
+  "fastq": [
+    "cover",
+    "desktop-1",
+    "desktop-2",
+    "mobile-1"
+  ],
+  "grizzly-public-school": [
+    "cover",
+    "desktop-1",
+    "desktop-2",
+    "mobile-1"
+  ],
+  "jtgc": [
+    "cover",
+    "desktop-1",
+    "desktop-2",
+    "mobile-1"
+  ],
+  "kl-boox-house": [
+    "cover",
+    "desktop-1",
+    "desktop-2",
+    "mobile-1"
+  ]
+}
