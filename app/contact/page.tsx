@@ -11,7 +11,7 @@ import { buildMetadata, contactPageJsonLd } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Contact",
   description:
-    "Start a project with AA Solutions. Tell us what you are building and we will reply within 24 hours with an honest view of scope, timeline and cost.",
+    "Start a project with KL Solutions. Tell us what you are building and we will reply within 24 hours with an honest view of scope, timeline and cost.",
   path: "/contact",
 });
 

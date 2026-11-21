@@ -15,7 +15,7 @@ import { cn } from "cn";
 export const metadata: Metadata = buildMetadata({
   title: "About",
   description:
-    "AA Solutions is a small app and web development studio working with schools, colleges, local businesses and early-stage startups.",
+    "KL Solutions builds digital tools for schools, local businesses and startups.",
   path: "/about",
 });
 

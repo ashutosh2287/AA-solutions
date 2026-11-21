@@ -30,7 +30,7 @@ export async function Footer() {
   const year = await copyrightYear();
 
   return (
-    <footer className="bg-muted/40 border-t">
+    <footer className="border-t bg-[linear-gradient(to_bottom,var(--muted)_0%,var(--background)_100%)]">
       <div className="container-page py-14 sm:py-16">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">

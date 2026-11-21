@@ -73,7 +73,9 @@ export function ProjectImage({
   const [failed, setFailed] = useState(false);
   const available = hasProjectImage(project.slug, slot);
   const isMobile = slot === "mobile-1";
-  const src = `/projects/${project.slug}/${slot}.png`;
+  // Version local project screenshots so browsers replace updated portfolio
+  // artwork instead of continuing to show a previously cached PNG.
+  const src = `/projects/${project.slug}/${slot}.png?v=20261121b`;
   const label = alt ?? `${project.name} — ${slot.replace("-", " ")} screenshot`;
 
   return (

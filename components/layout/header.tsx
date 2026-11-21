@@ -57,7 +57,7 @@ export function Header() {
       className={cn(
         "sticky top-0 z-50 w-full transition-colors duration-300",
         scrolled || open
-          ? "bg-background/85 border-border/70 border-b backdrop-blur-xl"
+          ? "bg-background/80 border-border/70 border-b shadow-[0_8px_30px_-24px_color-mix(in_oklch,var(--foreground)_40%,transparent)] backdrop-blur-xl"
           : "border-b border-transparent bg-transparent",
       )}
     >

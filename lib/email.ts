@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 import type { ContactSubmission } from "@/lib/validators";
 
 const fromAddress =
-  process.env.CONTACT_FROM_EMAIL ?? `AA Solutions <onboarding@resend.dev>`;
+  process.env.CONTACT_FROM_EMAIL ?? `KL Solutions <onboarding@resend.dev>`;
 
 function escapeHtml(value: string): string {
   return value

@@ -12,7 +12,7 @@ test.describe("Site shell", () => {
     await page.goto("/");
 
     await expect(
-      page.getByRole("heading", { level: 1, name: /AA Solutions/i }),
+      page.getByRole("heading", { level: 1, name: /KL Solutions/i }),
     ).toBeVisible();
 
     const nav = page.getByRole("navigation", { name: "Primary" });

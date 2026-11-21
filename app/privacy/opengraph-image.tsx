@@ -1,6 +1,6 @@
 import { ogContentType, ogSize, renderOgImage } from "@/lib/og";
 
-export const alt = "Privacy Policy — AA Solutions";
+export const alt = "Privacy Policy — KL Solutions";
 export const size = ogSize;
 export const contentType = ogContentType;
 

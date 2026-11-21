@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Work",
   description:
-    "Selected projects by AA Solutions — a campus food-ordering app, a study library management system, and school and club websites.",
+    "Selected projects by KL Solutions — a campus food-ordering app, a study library management system, and school and club websites.",
   path: "/work",
 });
 

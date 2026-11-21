@@ -19,19 +19,19 @@ export function FinalCta({
 }) {
   return (
     <section className={cn("container-page py-20 sm:py-28", className)}>
-      <div className="bg-foreground text-background relative overflow-hidden rounded-3xl px-6 py-14 sm:px-12 sm:py-20">
-        <div className="bg-grid absolute inset-0 opacity-[0.06]" />
-        <div className="bg-signal/20 absolute -top-24 -right-16 size-72 rounded-full blur-3xl" />
-        <div className="bg-primary/30 absolute -bottom-28 -left-20 size-72 rounded-full blur-3xl" />
+      <div className="relative overflow-hidden rounded-[2rem] bg-[linear-gradient(135deg,var(--primary)_0%,color-mix(in_oklch,var(--primary)_82%,#172554)_100%)] px-6 py-14 text-white shadow-[0_30px_90px_-35px_color-mix(in_oklch,var(--primary)_75%,transparent)] sm:px-12 sm:py-20">
+        <div className="bg-grid absolute inset-0 opacity-[0.12]" />
+        <div className="absolute -top-20 right-0 size-64 rounded-full bg-signal/30 blur-3xl" />
+        <div className="absolute bottom-[-10rem] left-[-6rem] size-80 rounded-full bg-white/10 blur-3xl" />
 
         <div className="relative mx-auto max-w-2xl text-center">
-          <p className="text-signal mb-4 text-xs font-semibold tracking-[0.16em] uppercase">
+          <p className="mb-4 text-xs font-semibold tracking-[0.16em] uppercase text-signal">
             {site.availability}
           </p>
           <h2 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
             {title}
           </h2>
-          <p className="text-background/70 mx-auto mt-4 max-w-xl text-base leading-7 text-pretty">
+          <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-white/75 text-pretty">
             {description}
           </p>
 
@@ -50,7 +50,7 @@ export function FinalCta({
               href={site.contact.emailHref}
               className={cn(
                 buttonVariants({ variant: "outline", size: "xl" }),
-                "border-background/25 text-background hover:bg-background/10 hover:text-background w-full sm:w-auto",
+                "w-full border-white/25 bg-white/5 text-white hover:bg-white/10 hover:text-white sm:w-auto",
               )}
             >
               <Mail aria-hidden="true" />
@@ -58,14 +58,14 @@ export function FinalCta({
             </a>
           </div>
 
-          <div className="text-background/60 mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/65">
             <span className="inline-flex items-center gap-1.5">
               <MessageCircle aria-hidden="true" className="size-3.5" />
               <a
                 href={site.contact.whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-background underline underline-offset-4"
+                className="underline underline-offset-4 hover:text-white"
               >
                 WhatsApp
               </a>

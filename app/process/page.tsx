@@ -13,7 +13,7 @@ import { cn } from "cn";
 export const metadata: Metadata = buildMetadata({
   title: "Process",
   description:
-    "How AA Solutions works: discover, design, build, then launch and support. A clear weekly rhythm with fixed scope and a working preview from week one.",
+    "How KL Solutions works: discover, design, build, then launch and support. A clear weekly rhythm with fixed scope and a working preview from week one.",
   path: "/process",
 });
 
