@@ -7,14 +7,14 @@ import { ProcessTimeline } from "@/components/sections/process-timeline";
 import { TechStack } from "@/components/sections/tech-stack";
 import { Testimonials } from "@/components/sections/testimonials";
 import { ProjectCard } from "@/components/project-card";
-import { ProjectImage } from "@/components/project-image";
+import { HeroProjectCarousel } from "@/components/hero-project-carousel";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { ServiceCard } from "@/components/service-card";
 import { buttonVariants } from "@/components/ui/button";
 import { site } from "@/content/site";
 import { services } from "@/content/services";
-import { getFeaturedProjects, projects } from "@/content/projects";
+import { getFeaturedProjects } from "@/content/projects";
 import { buildMetadata } from "@/lib/seo";
 import { cn } from "cn";
 
@@ -40,28 +40,31 @@ export default function HomePage() {
       <section className="hero-glow relative overflow-hidden">
         <div className="bg-grid mask-fade-b pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.18]" />
 
-        <div className="container-page relative pt-14 pb-16 sm:pt-20 sm:pb-24">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div className="container-page relative pt-10 pb-12 sm:pt-14 sm:pb-16">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
             <div>
               <p className="border-border bg-background/70 text-muted-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium backdrop-blur">
                 <span className="relative flex size-2">
-                  <span className="bg-signal absolute inline-flex size-full animate-ping rounded-full opacity-70" />
-                  <span className="bg-signal relative inline-flex size-2 rounded-full" />
+                  <span className="bg-primary absolute inline-flex size-full animate-ping rounded-full opacity-50" />
+                  <span className="bg-primary relative inline-flex size-2 rounded-full" />
                 </span>
                 {site.availability}
               </p>
 
-              <h1 className="mt-6 text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-[3.6rem] lg:leading-[1.05]">
+              <h1 className="mt-6 text-4xl font-semibold tracking-[-0.035em] text-balance sm:text-5xl lg:text-[4.15rem] lg:leading-[1.02]">
                 <span className="block">{site.name}</span>
                 <span className="text-muted-foreground mt-2 block text-[0.72em] leading-[1.15]">
-                  Apps and websites people{" "}
-                  <span className="text-foreground">actually use</span>.
+                  You bring the problem.
+                  <span className="text-foreground block">We build the solution.</span>
                 </span>
               </h1>
 
               <p className="text-muted-foreground mt-6 max-w-xl text-base leading-7 text-pretty sm:text-lg">
-                {site.shortDescription} We handle the design, the build and the launch —
-                so you get something real, not a deck of slides.
+                {site.shortDescription}
+                <span className="mt-2 block">
+                  From small businesses and stores to schools and startups, we turn everyday
+                  business problems into smart digital solutions.
+                </span>
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -102,65 +105,24 @@ export default function HomePage() {
 
             {/* Hero mockup */}
             <div className="relative">
-              <div className="bg-primary/20 absolute -inset-6 -z-10 rounded-[2rem] blur-2xl" />
-              <div className="border-border/70 bg-card/70 rounded-3xl border p-3 shadow-xl backdrop-blur">
-                <ProjectImage
-                  project={lead}
-                  slot="cover"
-                  preload
-                  sizes="(min-width: 1024px) 560px, 92vw"
-                  className="rounded-xl"
-                />
-                <div className="flex items-center justify-between gap-3 px-1 pt-3 pb-1">
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold">{lead.name}</p>
-                    <p className="text-muted-foreground truncate text-xs">
-                      {lead.subtitle}
-                    </p>
-                  </div>
-                  <Link
-                    href={`/work/${lead.slug}`}
-                    className="text-muted-foreground hover:text-foreground inline-flex shrink-0 items-center gap-1 text-xs font-medium"
-                  >
-                    View case study
-                    <ArrowUpRight aria-hidden="true" className="size-3.5" />
-                  </Link>
-                </div>
-              </div>
+              <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-primary/10 blur-3xl" />
+              <div className="absolute -right-5 -top-5 -z-10 size-24 rotate-12 rounded-[1.5rem] border border-primary/20 bg-primary/5" />
+              <HeroProjectCarousel projects={featured} />
 
               <div className="border-border bg-background/90 absolute -bottom-5 -left-3 hidden items-center gap-2 rounded-xl border px-3 py-2 shadow-lg backdrop-blur sm:flex">
                 <span className="bg-signal/20 text-signal-foreground grid size-7 place-items-center rounded-lg">
                   <Sparkles aria-hidden="true" className="size-3.5" />
                 </span>
-                <span className="text-xs font-medium">Design → Build → Launch</span>
+                <span className="text-xs font-medium">Design → Build → Deliver</span>
               </div>
             </div>
           </div>
 
-          {/* Project name strip */}
-          <div className="border-border/70 mt-16 border-t pt-6">
-            <p className="text-muted-foreground text-xs font-medium tracking-[0.14em] uppercase">
-              Selected work
-            </p>
-            <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 sm:flex sm:flex-wrap sm:items-center sm:gap-x-8">
-              {projects.map((project) => (
-                <li key={project.slug}>
-                  <Link
-                    href={`/work/${project.slug}`}
-                    className="text-muted-foreground hover:text-foreground font-display inline-flex items-center gap-1 text-sm font-medium transition-colors sm:text-base"
-                  >
-                    {project.name}
-                    <ArrowUpRight aria-hidden="true" className="size-3.5 opacity-50" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </section>
 
       {/* ------------------------------------------------------------ Services */}
-      <section className="container-page py-20 sm:py-24">
+      <section className="container-page py-14 sm:py-16">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             eyebrow="What we do"
@@ -187,7 +149,7 @@ export default function HomePage() {
 
       {/* -------------------------------------------------------- Featured work */}
       <section className="bg-muted/30 border-y">
-        <div className="container-page py-20 sm:py-24">
+        <div className="container-page py-14 sm:py-16">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeading
               eyebrow="Selected work"
@@ -217,8 +179,8 @@ export default function HomePage() {
       </section>
 
       {/* ------------------------------------------------------------- Process */}
-      <section className="container-page py-20 sm:py-24">
-        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+      <section className="container-page py-14 sm:py-16">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
           <div className="lg:sticky lg:top-24 lg:self-start">
             <SectionHeading
               eyebrow="How we work"

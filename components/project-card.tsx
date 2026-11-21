@@ -20,7 +20,7 @@ export function ProjectCard({
         href={`/work/${project.slug}`}
         className="focus-visible:ring-ring flex h-full flex-col rounded-2xl focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:outline-none"
       >
-        <div className="relative overflow-hidden rounded-2xl">
+        <div className="relative overflow-hidden rounded-2xl border bg-card shadow-sm">
           <ProjectImage
             project={project}
             slot="cover"

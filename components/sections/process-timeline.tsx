@@ -16,7 +16,7 @@ export function ProcessTimeline({
   className?: string;
 }) {
   return (
-    <ol className={cn("relative space-y-10 sm:space-y-14", className)}>
+    <ol className={cn("relative space-y-7 sm:space-y-9", className)}>
       <span
         aria-hidden="true"
         className="bg-border absolute top-2 bottom-2 left-[19px] w-px sm:left-[23px]"

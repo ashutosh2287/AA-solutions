@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy",
   description:
-    "How AA Solutions collects, uses and protects information submitted through this website.",
+    "How KL Solutions collects, uses and protects information submitted through this website.",
   path: "/privacy",
 });
 

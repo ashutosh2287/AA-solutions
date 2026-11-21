@@ -96,7 +96,7 @@ export function renderOgImage({
             letterSpacing: -1,
           }}
         >
-          AA
+          KL
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <span style={{ fontSize: 26, fontWeight: 600, letterSpacing: -0.5 }}>

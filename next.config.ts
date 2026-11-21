@@ -6,6 +6,17 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   poweredByHeader: false,
   pageExtensions: ["ts", "tsx", "md", "mdx"],
+  images: {
+    localPatterns: [
+      {
+        pathname: "/kl-solutions-logo.png",
+      },
+      {
+        pathname: "/projects/**",
+        search: "?v=20261121b",
+      },
+    ],
+  },
   turbopack: {
     rules: {
       "*.css": {

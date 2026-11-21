@@ -33,7 +33,7 @@ export function ServiceCard({
     <Link
       href={`/services#${service.slug}`}
       className={cn(
-        "group bg-card focus-visible:ring-ring relative flex h-full flex-col rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:outline-none",
+        "group bg-card focus-visible:ring-ring relative flex h-full flex-col overflow-hidden rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_18px_50px_-24px_color-mix(in_oklch,var(--primary)_55%,transparent)] focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:outline-none",
         className,
       )}
     >

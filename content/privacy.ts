@@ -10,12 +10,12 @@ export const privacy = {
   lastUpdated: "TODO: add effective date",
   needsReview: true,
   intro:
-    "This policy explains what information AA Solutions collects when you use this website, why we collect it, and the choices you have. It is a starting template and must be reviewed before launch.",
+    "This policy explains what information KL Solutions collects when you use this website, why we collect it, and the choices you have. It is a starting template and must be reviewed before launch.",
   sections: [
     {
       heading: "Who we are",
       paragraphs: [
-        "AA Solutions builds apps and websites for schools, colleges, small businesses and startups.",
+        "KL Solutions builds apps and websites for schools, colleges, small businesses and startups.",
         "For any privacy question, contact us at [TODO: add privacy contact email].",
       ],
     },

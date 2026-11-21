@@ -2,7 +2,7 @@ import type { Founder, Value } from "./types";
 
 export const about = {
   intro:
-    "AA Solutions is a small app and web development studio. We work with schools, colleges, local businesses and early-stage startups to turn a clear idea into a product people can actually use.",
+    "KL Solutions builds digital tools for small businesses, stores, schools and startups. We turn everyday business problems into smart, easy-to-use websites and apps.",
   story: [
     "We started because we kept meeting the same problem: good organisations with real work to do, stuck with a website that misrepresents them or a process held together by spreadsheets and WhatsApp groups.",
     "So we build the opposite. Small, focused products with a clear purpose, designed carefully and built to last longer than the launch announcement.",
@@ -45,7 +45,7 @@ export const about = {
 export const founder: Founder = {
   name: "TODO: add founder name",
   role: "Founder & lead developer",
-  bio: "TODO: add a short founder bio — background, what you focus on, and why you started AA Solutions.",
+  bio: "TODO: add a short founder bio — background, what you focus on, and why you started KL Solutions.",
   photo: null,
 };
 

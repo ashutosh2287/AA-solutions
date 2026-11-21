@@ -5,14 +5,14 @@
  * Every page, the header, footer, metadata and structured data read from this file.
  */
 export const site = {
-  name: "AA Solutions",
-  legalName: "AA Solutions",
-  tagline: "We build apps and websites people actually use",
+  name: "KL Solutions",
+  legalName: "KL Solutions",
+  tagline: "You bring the problem. We build the solution.",
   description:
-    "AA Solutions is an app and web development studio for schools, colleges, small businesses and startups. We design and build web apps, business websites and AI-powered features that are fast, reliable and genuinely useful.",
+    "KL Solutions builds websites and apps that make businesses easier to manage, reduce manual work, organize data, and help sales grow. We create digital solutions for small businesses, stores, schools and startups.",
   shortDescription:
-    "An app and web development studio for schools, small businesses and startups.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://aasolutions.example.com",
+    "We build websites and apps that make your business easier to manage, reduce boring manual work, keep your data organized, and help you grow your sales.",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://klsolutions.example.com",
   locale: "en_IN",
   // TODO: add the real founding year before launch (used in structured data).
   foundingYear: null,
