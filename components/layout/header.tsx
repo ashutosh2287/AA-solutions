@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, LazyMotion, domAnimation, m } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
 import { site } from "@/content/site";
@@ -26,8 +26,13 @@ export function Header() {
   const [openForPath, setOpenForPath] = useState<string | null>(null);
   const open = openForPath === pathname;
   const [scrolled, setScrolled] = useState(false);
+  const [pendingHref, setPendingHref] = useState<string | null>(null);
 
   const setOpen = (next: boolean) => setOpenForPath(next ? pathname : null);
+  const activeHref =
+    pendingHref && !isActivePath(pathname, pendingHref)
+      ? pendingHref
+      : (site.nav.find((item) => isActivePath(pathname, item.href))?.href ?? null);
 
   // Add a border/blur once the page is scrolled.
   useEffect(() => {
@@ -53,116 +58,122 @@ export function Header() {
   }, [open]);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 w-full transition-colors duration-300",
-        scrolled || open
-          ? "bg-background/80 border-border/70 border-b shadow-[0_8px_30px_-24px_color-mix(in_oklch,var(--foreground)_40%,transparent)] backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent",
-      )}
-    >
-      <div className="container-wide flex h-16 items-center justify-between gap-4">
-        <Wordmark />
+    <LazyMotion features={domAnimation}>
+      <header
+        className={cn(
+          "sticky top-0 z-50 w-full transition-colors duration-300",
+          scrolled || open
+            ? "bg-background/80 border-border/70 border-b shadow-[0_8px_30px_-24px_color-mix(in_oklch,var(--foreground)_40%,transparent)] backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent",
+        )}
+      >
+        <div className="container-wide flex h-16 items-center justify-between gap-4">
+          <Wordmark />
 
-        <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
-          {site.nav.map((item) => {
-            const active = isActivePath(pathname, item.href);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  "relative rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                  active
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {item.label}
-                {active ? (
-                  <span className="bg-primary absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full" />
-                ) : null}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="flex items-center gap-1.5">
-          <ThemeToggle />
-          <Link
-            href={site.cta.href}
-            className={cn(buttonVariants({ size: "xl" }), "hidden sm:inline-flex")}
-          >
-            {site.cta.label}
-            <ArrowUpRight aria-hidden="true" />
-          </Link>
-          <button
-            type="button"
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "md:hidden",
-            )}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-          </button>
-        </div>
-      </div>
-
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            id="mobile-menu"
-            key="mobile-menu"
-            initial={reduceMotion ? false : { opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={
-              reduceMotion ? { opacity: 1, height: "auto" } : { opacity: 0, height: 0 }
-            }
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-background/95 overflow-hidden border-t backdrop-blur-xl md:hidden"
-          >
-            <nav
-              aria-label="Mobile"
-              className="container-wide flex flex-col gap-1 py-4"
-            >
-              {[...site.nav, { label: "Contact", href: "/contact" }].map((item) => {
-                const active = isActivePath(pathname, item.href);
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    className={cn(
-                      "flex items-center justify-between rounded-xl px-3 py-3 text-base font-medium transition-colors",
-                      active
-                        ? "bg-muted text-foreground"
-                        : "text-muted-foreground hover:bg-muted hover:text-foreground",
-                    )}
-                  >
-                    {item.label}
-                    <ArrowUpRight
+          <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
+            {site.nav.map((item) => {
+              const active = activeHref === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  onClick={() => setPendingHref(item.href)}
+                  className={cn(
+                    "group relative rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200",
+                    "focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+                    active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {item.label}
+                  {!active ? (
+                    <span
                       aria-hidden="true"
-                      className="text-muted-foreground size-4"
+                      className="bg-primary/20 absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full opacity-0 transition-opacity duration-200 group-hover:opacity-100"
                     />
-                  </Link>
-                );
-              })}
-              <Link
-                href={site.cta.href}
-                className={cn(buttonVariants({ size: "xl" }), "mt-2 w-full")}
-              >
-                {site.cta.label}
-                <ArrowUpRight aria-hidden="true" />
-              </Link>
-            </nav>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-    </header>
+                  ) : null}
+                  {active ? (
+                    reduceMotion ? (
+                      <span className="bg-primary absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full" />
+                    ) : (
+                      <m.span
+                        layoutId="nav-indicator"
+                        className="bg-primary absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full"
+                        transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                      />
+                    )
+                  ) : null}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="flex items-center gap-1.5">
+            <ThemeToggle />
+            <Link
+              href={site.cta.href}
+              className={cn(buttonVariants({ size: "xl" }), "hidden sm:inline-flex")}
+            >
+              {site.cta.label}
+              <ArrowUpRight aria-hidden="true" />
+            </Link>
+            <button
+              type="button"
+              className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "md:hidden")}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen(!open)}
+            >
+              {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+            </button>
+          </div>
+        </div>
+
+        <AnimatePresence>
+          {open ? (
+            <m.div
+              id="mobile-menu"
+              key="mobile-menu"
+              initial={reduceMotion ? false : { opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={reduceMotion ? { opacity: 1, height: "auto" } : { opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-background/95 overflow-hidden border-t backdrop-blur-xl md:hidden"
+            >
+              <nav aria-label="Mobile" className="container-wide flex flex-col gap-1 py-4">
+                {[...site.nav, { label: "Contact", href: "/contact" }].map((item) => {
+                  const active = isActivePath(pathname, item.href);
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "flex items-center justify-between rounded-xl border-l-2 px-3 py-3 text-base font-medium transition-colors",
+                        "focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+                        active
+                          ? "border-primary bg-muted text-foreground"
+                          : "border-transparent text-muted-foreground hover:bg-muted hover:text-foreground",
+                      )}
+                    >
+                      {item.label}
+                      <ArrowUpRight aria-hidden="true" className="text-muted-foreground size-4" />
+                    </Link>
+                  );
+                })}
+                <Link
+                  href={site.cta.href}
+                  className={cn(buttonVariants({ size: "xl" }), "mt-2 w-full")}
+                >
+                  {site.cta.label}
+                  <ArrowUpRight aria-hidden="true" />
+                </Link>
+              </nav>
+            </m.div>
+          ) : null}
+        </AnimatePresence>
+      </header>
+    </LazyMotion>
   );
 }

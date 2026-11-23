@@ -1,12 +1,10 @@
 import { z } from "zod";
 
 export const projectTypes = [
-  "Web app",
-  "Business website",
-  "Management system",
+  "Custom Website Design",
+  "Custom Mobile Apps",
   "UI/UX design",
-  "AI feature",
-  "Something else",
+  "Not sure yet",
 ] as const;
 
 export const budgets = [

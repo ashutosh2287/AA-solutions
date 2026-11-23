@@ -5,7 +5,7 @@ import { ArrowUpRight, Check } from "lucide-react";
 import { FinalCta } from "@/components/sections/final-cta";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
-import { TodoNote } from "@/components/todo-note";
+
 import { buttonVariants } from "@/components/ui/button";
 import { about, aboutFacts, founder } from "@/content/about";
 import { site } from "@/content/site";
@@ -124,7 +124,7 @@ export default function AboutPage() {
             aria-hidden="true"
             className="bg-muted text-muted-foreground grid size-20 place-items-center rounded-2xl border border-dashed text-xs font-semibold tracking-wide"
           >
-            TODO
+            Photo
           </div>
           <div>
             <p className="font-display text-xl font-semibold tracking-tight">
@@ -134,11 +134,6 @@ export default function AboutPage() {
             <p className="text-muted-foreground mt-4 max-w-xl text-sm leading-6">
               {founder.bio}
             </p>
-            <TodoNote className="mt-4">
-              add the founder&apos;s name, a short bio and a photo (
-              <code className="text-foreground">content/about.ts</code> and{" "}
-              <code className="text-foreground">/public/team/</code>).
-            </TodoNote>
           </div>
         </div>
       </section>

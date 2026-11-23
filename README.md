@@ -1,4 +1,4 @@
-# AA Solutions — portfolio & marketing site
+# KL Solutions — portfolio & marketing site
 
 A production-ready marketing site for an app and web development studio, built with
 Next.js App Router, TypeScript and Tailwind CSS. All copy and project data lives in
@@ -129,7 +129,7 @@ scripts/
 
 1. Change `name`, `legalName`, `tagline` and `description` in `content/site.ts`.
 2. Update `contact` (email, WhatsApp, location) and `socials` there too.
-3. Update the `AA` monogram in `components/layout/wordmark.tsx` if you have a logo.
+3. Update the brand mark in `components/layout/wordmark.tsx` if you have a logo.
 
 Everything else — header, footer, metadata, JSON-LD, emails — reads from this file.
 
@@ -217,7 +217,7 @@ event via `lib/analytics.ts`.
 ## Accessibility & performance
 
 - Semantic landmarks, a skip link, visible focus rings, labelled form controls.
-- AA-contrast palette, light and dark themes.
+- WCAG AA-contrast palette, light and dark themes.
 - Motion is subtle and disabled for `prefers-reduced-motion`.
 - No horizontal scroll at 360px.
 - Images use `next/image` with explicit `sizes`; fonts are self-hosted via `next/font`.
@@ -247,24 +247,14 @@ Playwright starts the production server automatically when one is not already ru
 
 ---
 
-## Remaining TODOs before launch
+## Launch checklist
 
-These are intentionally visible placeholders — search for `TODO` to find them all.
-
-- [ ] `content/site.ts` — real email, WhatsApp number, location, social links and
-      founding year.
-- [ ] `content/about.ts` — founder name, role, bio, photo (`/public/team/`) and
-      "Based in" fact.
-- [ ] `content/case-studies/*.mdx` — original brief and measurable outcome for the
-      fastQ and KL Boox House case studies.
-- [ ] `content/privacy.ts` — effective date, privacy contact email; **legal review**.
-- [ ] `content/projects.ts` — challenge, solution, tech stack and results for each
-      project, once confirmed with the client.
-- [ ] `content/testimonials.ts` — add real quotes when available.
-- [ ] `.env.local` — Resend + Turnstile keys.
-- [ ] Replace the `AA` monogram with a real logo if one exists.
-- [ ] Review captured screenshots for cookie banners or login walls.
-
-> **Attribution note:** the live Grizzly Public School and JTGC sites both credit
-> "Zarvis.in" in their footers. Confirm the correct project attribution before
-> publishing those case studies.
+- [ ] `content/site.ts` - confirm public URL and add social URLs when ready.
+- [ ] `content/about.ts` - add founder photo if available.
+- [ ] `content/projects.ts` - replace any unverified metrics with client-approved numbers.
+- [ ] `content/privacy.ts` - have the policy reviewed by a qualified legal professional before launch.
+- [ ] `.env` / Vercel - set `NEXT_PUBLIC_SITE_URL`, Resend keys, and Turnstile keys.
+- [ ] Replace `public/icon.png` and `app/favicon.ico` if you want a custom icon.
+- [ ] Replace the brand mark with a real logo if one exists.
+- [ ] Capture/refresh screenshots (`npm run screenshots`) and check for cookie banners.
+- [ ] Run `npm run lint && npm run typecheck && npm run test:e2e && npm run build` before deploying.

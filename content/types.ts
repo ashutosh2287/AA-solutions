@@ -1,4 +1,4 @@
-export type ServiceIcon = "code" | "smartphone" | "globe" | "palette" | "sparkles";
+export type ServiceIcon = "globe" | "smartphone" | "palette";
 
 export interface Service {
   slug: string;
@@ -18,7 +18,7 @@ export interface Service {
   outcomes: string[];
 }
 
-export type ProjectCategory = "Web app" | "Website" | "Management system";
+export type ProjectCategory = "Custom Website Design";
 
 export type ProjectAccent = "amber" | "emerald" | "indigo" | "rose";
 
@@ -38,15 +38,15 @@ export interface Project {
   liveUrl?: string;
   client: string;
   summary: string;
-  /** Null means the detail is not confirmed yet — render a TODO state. */
+  /** Null means the detail is not confirmed yet. */
   challenge: string | null;
-  /** Null means the detail is not confirmed yet — render a TODO state. */
+  /** Null means the detail is not confirmed yet. */
   solution: string | null;
   features: string[];
-  /** Empty means the stack is not confirmed yet — render a TODO state. */
+  /** Empty means the stack is not confirmed yet. */
   tech: string[];
   tags: string[];
-  /** Null means results are not confirmed yet — render a TODO state. */
+  /** Null means results are not confirmed yet. */
   results: string | null;
   featured: boolean;
   accent: ProjectAccent;
@@ -72,7 +72,7 @@ export interface Founder {
   name: string;
   role: string;
   bio: string;
-  /** Path to a photo in /public, or null for a TODO placeholder. */
+  /** Path to a photo in /public, or null when no photo is available. */
   photo: string | null;
 }
 

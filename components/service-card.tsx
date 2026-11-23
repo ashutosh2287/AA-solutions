@@ -1,11 +1,9 @@
 import Link from "next/link";
 import {
   ArrowRight,
-  Code2,
   Globe,
   Palette,
   Smartphone,
-  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 
@@ -13,11 +11,9 @@ import type { Service, ServiceIcon } from "@/content/types";
 import { cn } from "cn";
 
 const icons: Record<ServiceIcon, LucideIcon> = {
-  code: Code2,
-  smartphone: Smartphone,
   globe: Globe,
+  smartphone: Smartphone,
   palette: Palette,
-  sparkles: Sparkles,
 };
 
 export function ServiceCard({

@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink } from "lucide-react"
 
 import { ProjectImage } from "@/components/project-image";
 import { Reveal } from "@/components/reveal";
-import { TodoNote } from "@/components/todo-note";
+
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { JsonLd } from "@/components/json-ld";
@@ -167,10 +167,9 @@ async function ProjectDetail({
                   {project.challenge}
                 </p>
               ) : (
-                <TodoNote className="mt-4">
-                  the original brief and problem statement for this project have not
-                  been documented yet.
-                </TodoNote>
+                <p className="text-muted-foreground mt-3 text-base leading-7">
+                  Challenge details will be added when confirmed.
+                </p>
               )}
             </section>
 
@@ -186,9 +185,9 @@ async function ProjectDetail({
                   {project.solution}
                 </p>
               ) : (
-                <TodoNote className="mt-4">
-                  a written solution walkthrough is still to be added.
-                </TodoNote>
+                <p className="text-muted-foreground mt-3 text-base leading-7">
+                  Solution details will be added when confirmed.
+                </p>
               )}
             </section>
 
@@ -230,11 +229,9 @@ async function ProjectDetail({
                   {project.results}
                 </p>
               ) : (
-                <TodoNote className="mt-4">
-                  measured results are not available yet. We do not publish unverified
-                  numbers, so this section will stay empty until the client can confirm
-                  them.
-                </TodoNote>
+                <p className="text-muted-foreground mt-3 text-base leading-7">
+                  Measured results will be added when verified.
+                </p>
               )}
             </section>
           </div>
@@ -268,9 +265,7 @@ async function ProjectDetail({
                       ))}
                     </div>
                   ) : (
-                    <TodoNote className="text-xs">
-                      the production stack for this project is not documented yet.
-                    </TodoNote>
+                    <p className="text-muted-foreground text-sm">Stack details coming soon.</p>
                   )}
                 </dd>
               </div>

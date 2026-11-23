@@ -5,11 +5,9 @@ import {
   ArrowUpRight,
   Check,
   Clock,
-  Code2,
   Globe,
   Palette,
   Smartphone,
-  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 
@@ -33,16 +31,14 @@ import { cn } from "cn";
 export const metadata: Metadata = buildMetadata({
   title: "Services",
   description:
-    "Web app development, mobile-friendly platforms, business websites, UI/UX design and AI-powered features for schools, small businesses and startups.",
+    "Custom Website Design, Custom Mobile Apps, and UI/UX design for small businesses, schools, and startups.",
   path: "/services",
 });
 
 const icons: Record<ServiceIcon, LucideIcon> = {
-  code: Code2,
-  smartphone: Smartphone,
   globe: Globe,
+  smartphone: Smartphone,
   palette: Palette,
-  sparkles: Sparkles,
 };
 
 export default function ServicesPage() {

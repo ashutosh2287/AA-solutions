@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Monitor, Smartphone } from "lucide-react";
 
 import type { Project, ProjectAccent, ProjectImageSlot } from "@/content/types";
-import { hasProjectImage } from "@/lib/project-images";
+import { getProjectImageExtension } from "@/lib/project-images";
 import { cn } from "cn";
 
 const accentStyles: Record<
@@ -46,8 +46,8 @@ const slotRatio: Record<ProjectImageSlot, string> = {
 };
 
 /**
- * Renders a project screenshot if one exists at
- * /public/projects/<slug>/<slot>.png, and a designed placeholder otherwise.
+ * Renders a project screenshot if one exists in /public/projects/<slug>/, and a
+ * designed placeholder otherwise.
  *
  * Existence is read from the generated screenshot manifest, so a missing file
  * never triggers a 404 request. The `onError` fallback covers the case where a
@@ -71,12 +71,12 @@ export function ProjectImage({
   chrome?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
-  const available = hasProjectImage(project.slug, slot);
+  const extension = getProjectImageExtension(project.slug, slot);
   const isMobile = slot === "mobile-1";
   // Version local project screenshots so browsers replace updated portfolio
-  // artwork instead of continuing to show a previously cached PNG.
-  const src = `/projects/${project.slug}/${slot}.png?v=20261121b`;
-  const label = alt ?? `${project.name} — ${slot.replace("-", " ")} screenshot`;
+  // artwork instead of continuing to show a previously cached image.
+  const src = extension ? `/projects/${project.slug}/${slot}${extension}?v=20261121c` : "";
+  const label = alt ?? `${project.name} - ${slot.replace("-", " ")} screenshot`;
 
   return (
     <div
@@ -86,7 +86,7 @@ export function ProjectImage({
         className,
       )}
     >
-      {available && !failed ? (
+      {extension && !failed ? (
         <Image
           src={src}
           alt={label}
@@ -201,7 +201,7 @@ function Placeholder({
               ) : (
                 <Monitor className="size-2.5" />
               )}
-              Placeholder — add {slot}.png
+              Placeholder - add {slot} image
             </span>
             <span className="bg-foreground/10 h-1 w-10 rounded-full" />
           </div>

@@ -39,9 +39,24 @@ test.describe("Site shell", () => {
     await nav.getByRole("link", { name: "Services" }).click();
 
     await expect(page).toHaveURL(/\/services$/);
+    await expect(nav.getByRole("link", { name: "Services" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
     await expect(
       page.getByRole("heading", { level: 1, name: /Design and development/i }),
     ).toBeVisible();
+
+    await nav.getByRole("link", { name: "Work" }).click();
+    await expect(page).toHaveURL(/\/work$/);
+    await expect(nav.getByRole("link", { name: "Work" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+    await expect(nav.getByRole("link", { name: "Services" })).not.toHaveAttribute(
+      "aria-current",
+      "page",
+    );
   });
 
   test("every page sets a unique title and description", async ({ page }) => {
@@ -91,11 +106,8 @@ test.describe("Work", () => {
     const cards = page.locator("article");
     await expect(cards).toHaveCount(4);
 
-    await page.getByRole("button", { name: /^Website/ }).click();
-    await expect(page.locator("article")).toHaveCount(3);
-
-    await page.getByRole("button", { name: /^Web app/ }).click();
-    await expect(page.locator("article")).toHaveCount(1);
+    await page.getByRole("button", { name: /^Custom Website Design/ }).click();
+    await expect(page.locator("article")).toHaveCount(4);
 
     await page.getByRole("button", { name: /^All/ }).click();
     await expect(page.locator("article")).toHaveCount(4);
@@ -165,7 +177,7 @@ test.describe("Contact form", () => {
       .fill("We need a new website for our school with admissions information.");
 
     await page.getByRole("combobox", { name: "Project type" }).click();
-    await page.getByRole("option", { name: "Business website" }).click();
+    await page.getByRole("option", { name: "Custom Website Design" }).click();
 
     await page.getByRole("combobox", { name: "Approximate budget" }).click();
     await page.getByRole("option", { name: "Not sure yet" }).click();
@@ -197,7 +209,7 @@ test.describe("Contact form", () => {
       .getByLabel("What are you trying to build?")
       .fill("We need a new website for our school with admissions information.");
     await page.getByRole("combobox", { name: "Project type" }).click();
-    await page.getByRole("option", { name: "Business website" }).click();
+    await page.getByRole("option", { name: "Custom Website Design" }).click();
     await page.getByRole("combobox", { name: "Approximate budget" }).click();
     await page.getByRole("option", { name: "Not sure yet" }).click();
 

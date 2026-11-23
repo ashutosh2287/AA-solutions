@@ -138,8 +138,8 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {services.slice(0, 4).map((service, index) => (
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, index) => (
             <Reveal key={service.slug} delay={index * 0.05}>
               <ServiceCard service={service} />
             </Reveal>

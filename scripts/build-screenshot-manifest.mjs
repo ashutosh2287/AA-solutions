@@ -4,7 +4,7 @@
  *
  * Running this before dev/build means <ProjectImage> knows whether a real
  * screenshot exists, so missing files never produce 404 requests or console
- * noise. Drop a PNG in the right folder, restart the dev server (or run
+ * noise. Drop an image in the right folder, restart the dev server (or run
  * `npm run screenshots`), and it appears automatically.
  */
 
@@ -18,9 +18,10 @@ const projectsDir = path.join(root, "public", "projects");
 const outputFile = path.join(root, "content", "screenshot-manifest.json");
 
 const SLOTS = new Set(["cover", "desktop-1", "desktop-2", "mobile-1"]);
+const EXT_PRIORITY = [".avif", ".webp", ".png", ".jpg", ".jpeg"];
 
 export async function writeScreenshotManifest() {
-  /** @type {Record<string, string[]>} */
+  /** @type {Record<string, Record<string, string>>} */
   const manifest = {};
 
   let projectFolders = [];
@@ -40,13 +41,25 @@ export async function writeScreenshotManifest() {
       continue;
     }
 
-    const slots = files
-      .filter((file) => file.toLowerCase().endsWith(".png"))
-      .map((file) => file.replace(/\.png$/i, ""))
-      .filter((slot) => SLOTS.has(slot))
-      .sort();
+    /** @type {Record<string, string>} */
+    const slots = {};
+    for (const file of files) {
+      const ext = path.extname(file).toLowerCase();
+      if (!EXT_PRIORITY.includes(ext)) continue;
+      const slot = path.basename(file, ext);
+      if (!SLOTS.has(slot)) continue;
+      const current = slots[slot];
+      if (!current || EXT_PRIORITY.indexOf(ext) < EXT_PRIORITY.indexOf(current)) {
+        slots[slot] = ext;
+      }
+    }
 
-    if (slots.length > 0) manifest[folder.name] = slots;
+    const ordered = Object.fromEntries(
+      Object.keys(slots)
+        .sort()
+        .map((slot) => [slot, slots[slot]]),
+    );
+    if (Object.keys(ordered).length > 0) manifest[folder.name] = ordered;
   }
 
   await mkdir(path.dirname(outputFile), { recursive: true });
@@ -62,7 +75,7 @@ if (isDirectRun) {
   writeScreenshotManifest()
     .then((manifest) => {
       const count = Object.values(manifest).reduce(
-        (total, slots) => total + slots.length,
+        (total, slots) => total + Object.keys(slots).length,
         0,
       );
       console.log(`Screenshot manifest updated (${count} image(s)).`);

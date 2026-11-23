@@ -3,20 +3,19 @@ import type { PrivacySection } from "./types";
 /**
  * Privacy policy template.
  *
- * TODO: have this reviewed by a qualified legal professional before launch.
- * Placeholders in [square brackets] must be replaced with real details.
+ * Review note: this content should be reviewed by a qualified legal professional before launch.
  */
 export const privacy = {
-  lastUpdated: "TODO: add effective date",
+  lastUpdated: "21 November 2026",
   needsReview: true,
   intro:
-    "This policy explains what information KL Solutions collects when you use this website, why we collect it, and the choices you have. It is a starting template and must be reviewed before launch.",
+    "This policy explains what information KL Solutions collects when you use this website, why we collect it, and the choices you have. It has been updated with current contact details, but it should still be reviewed by a qualified legal professional before launch.",
   sections: [
     {
       heading: "Who we are",
       paragraphs: [
         "KL Solutions builds apps and websites for schools, colleges, small businesses and startups.",
-        "For any privacy question, contact us at [TODO: add privacy contact email].",
+        "For any privacy question, contact us at ashutoshanand2287@gmail.com.",
       ],
     },
     {
@@ -67,7 +66,7 @@ export const privacy = {
       heading: "Your rights",
       paragraphs: [
         "Depending on where you live, you may have the right to access, correct, export or delete the personal information we hold about you, and to object to certain processing.",
-        "To make a request, email [TODO: add privacy contact email] and we will respond within a reasonable timeframe.",
+        "To make a request, email ashutoshanand2287@gmail.com and we will respond within a reasonable timeframe.",
       ],
     },
     {
@@ -79,7 +78,7 @@ export const privacy = {
     {
       heading: "Contact",
       paragraphs: [
-        "Questions about this policy can be sent to [TODO: add privacy contact email] or through the contact page.",
+        "Questions about this policy can be sent to ashutoshanand2287@gmail.com or through the contact page.",
       ],
     },
   ] satisfies readonly PrivacySection[],

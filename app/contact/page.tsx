@@ -3,7 +3,7 @@ import { Clock, Mail, MapPin, MessageCircle } from "lucide-react";
 
 import { ContactForm } from "@/components/contact-form";
 import { PageHeader } from "@/components/page-header";
-import { TodoNote } from "@/components/todo-note";
+
 import { JsonLd } from "@/components/json-ld";
 import { site } from "@/content/site";
 import { buildMetadata, contactPageJsonLd } from "@/lib/seo";
@@ -127,12 +127,10 @@ export default function ContactPage() {
               . We read every message ourselves.
             </p>
 
-            <TodoNote>
-              The email address, WhatsApp number and location above are placeholders.
-              Replace them in{" "}
-              <code className="text-foreground text-xs">content/site.ts</code> before
-              launch.
-            </TodoNote>
+            <p className="text-muted-foreground text-xs leading-6">
+              Contact details are kept up to date in{" "}
+              <code className="text-foreground text-xs">content/site.ts</code>.
+            </p>
           </aside>
         </div>
       </section>

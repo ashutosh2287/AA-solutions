@@ -114,23 +114,26 @@ export async function Footer() {
               </li>
             </ul>
 
-            <div className="mt-5 flex items-center gap-1">
-              {site.socials.map((social) => {
-                const Icon = socialIcons[social.label];
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${site.name} on ${social.label}`}
-                    className="text-muted-foreground hover:bg-background hover:text-foreground grid size-9 place-items-center rounded-lg border transition-colors"
-                  >
-                    <Icon aria-hidden="true" className="size-4" />
-                  </a>
-                );
-              })}
-            </div>
+            {site.socials.length > 0 ? (
+              <div className="mt-5 flex items-center gap-1">
+                {(site.socials as readonly { label: string; href: string }[]).map((social) => {
+                  const Icon = socialIcons[social.label as keyof typeof socialIcons];
+                  if (!Icon) return null;
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${site.name} on ${social.label}`}
+                      className="text-muted-foreground hover:bg-background hover:text-foreground grid size-9 place-items-center rounded-lg border transition-colors"
+                    >
+                      <Icon aria-hidden="true" className="size-4" />
+                    </a>
+                  );
+                })}
+              </div>
+            ) : null}
           </div>
         </div>
 

@@ -8,7 +8,7 @@ import { cn } from "cn";
  */
 export function TodoNote({
   children,
-  label = "TODO",
+  label = "Note",
   className,
 }: {
   children: React.ReactNode;

@@ -5,10 +5,10 @@
  *   npm run screenshots -- fastq     # one project
  *
  * Output (per project):
- *   public/projects/<slug>/cover.png      1440x900  (16:10, top of page)
- *   public/projects/<slug>/desktop-1.png  1440x900  (scrolled)
- *   public/projects/<slug>/desktop-2.png  1440x900  (scrolled further)
- *   public/projects/<slug>/mobile-1.png   390x844
+ *   public/projects/<slug>/cover.webp      1440x900  (16:10, top of page)
+ *   public/projects/<slug>/desktop-1.webp  1440x900  (scrolled)
+ *   public/projects/<slug>/desktop-2.webp  1440x900  (scrolled further)
+ *   public/projects/<slug>/mobile-1.webp   390x844
  *
  * Notes
  * - Sites are captured as a signed-out visitor. If a site shows a cookie
@@ -23,6 +23,7 @@ import { mkdir } from "node:fs/promises";
 import path from "node:path";
 
 import { chromium, type Browser, type Page } from "@playwright/test";
+import sharp from "sharp";
 
 import { projects } from "../content/projects";
 import { writeScreenshotManifest } from "./build-screenshot-manifest.mjs";
@@ -79,7 +80,13 @@ async function capture(
     }
 
     const target = path.join(directory, fileName);
-    await page.screenshot({ path: target, fullPage: false });
+    const tempPng = target.replace(/\.webp$/i, ".tmp.png");
+    await page.screenshot({ path: tempPng, fullPage: false });
+    await sharp(tempPng)
+      .resize({ width: viewport.width, withoutEnlargement: true })
+      .webp({ quality: 80, effort: 6 })
+      .toFile(target);
+    await import("node:fs/promises").then((fs) => fs.unlink(tempPng));
     console.log(`  ✓ ${path.relative(process.cwd(), target)}`);
   } finally {
     await context.close();
@@ -111,10 +118,10 @@ async function main() {
       console.log(`${project.name} — ${url}`);
 
       try {
-        await capture(browser, project.slug, url, DESKTOP, "cover.png");
-        await capture(browser, project.slug, url, DESKTOP, "desktop-1.png", 420);
-        await capture(browser, project.slug, url, DESKTOP, "desktop-2.png", 1400);
-        await capture(browser, project.slug, url, MOBILE, "mobile-1.png");
+        await capture(browser, project.slug, url, DESKTOP, "cover.webp");
+        await capture(browser, project.slug, url, DESKTOP, "desktop-1.webp", 420);
+        await capture(browser, project.slug, url, DESKTOP, "desktop-2.webp", 1400);
+        await capture(browser, project.slug, url, MOBILE, "mobile-1.webp");
       } catch (error) {
         failures += 1;
         console.error(

@@ -38,20 +38,16 @@ export const about = {
   ] satisfies readonly Value[],
 } as const;
 
-/**
- * TODO: replace with the real founder's name, role, bio and photo.
- * Add the photo to /public/team/ and set `photo` to its path.
- */
 export const founder: Founder = {
-  name: "TODO: add founder name",
-  role: "Founder & lead developer",
-  bio: "TODO: add a short founder bio — background, what you focus on, and why you started KL Solutions.",
+  name: "Aryan Sinha",
+  role: "Founder & Lead Developer",
+  bio: "I'm Aryan Sinha, founder of KL Solutions. I build websites, custom mobile apps, and digital products that look sharp, load fast, and are structured to grow with your business. From campus food ordering to library management, I've built tools that solve real everyday problems, and I like adding AI where it genuinely helps. Tell me what you're trying to build, and I'll help you get it live.",
   photo: null,
 };
 
 export const aboutFacts = [
-  { label: "Founded", value: "TODO: add founding year" },
-  { label: "Based in", value: "TODO: add city, country" },
+  { label: "Founded", value: "2026" },
+  { label: "Based in", value: "Bhagalpur, India" },
   { label: "Working with", value: "Schools, small businesses, startups" },
-  { label: "Typical project", value: "2–12 weeks" },
+  { label: "Typical project", value: "2-12 weeks" },
 ] as const;

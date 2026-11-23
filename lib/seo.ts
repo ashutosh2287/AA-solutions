@@ -75,13 +75,13 @@ export function organizationJsonLd(): JsonLdObject {
     description: site.description,
     email: site.contact.email,
     ...(site.foundingYear ? { foundingDate: String(site.foundingYear) } : {}),
-    sameAs: site.socials.map((social) => social.href),
+    ...(site.socials.length > 0
+      ? { sameAs: (site.socials as readonly { href: string }[]).map((social) => social.href) }
+      : {}),
     knowsAbout: [
-      "Web application development",
-      "Mobile-friendly web platforms",
-      "Business websites",
+      "Custom Website Design",
+      "Custom Mobile Apps",
       "UI/UX design",
-      "AI-powered features",
     ],
   };
 }

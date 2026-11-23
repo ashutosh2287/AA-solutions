@@ -23,7 +23,11 @@ export function Wordmark({
         className,
       )}
     >
-      <span className="relative size-9 shrink-0 overflow-hidden rounded-xl shadow-sm ring-1 ring-black/5 transition-transform duration-300 group-hover:-rotate-3 dark:ring-white/10">
+      <span
+        data-testid="brand-logo"
+        style={{ colorScheme: "light" }}
+        className="relative size-9 shrink-0 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/10 transition-transform duration-300 group-hover:-rotate-3"
+      >
         <Image
           src="/kl-solutions-logo.png"
           alt=""

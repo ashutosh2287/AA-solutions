@@ -1,26 +1,26 @@
 {
-  "fastq": [
-    "cover",
-    "desktop-1",
-    "desktop-2",
-    "mobile-1"
-  ],
-  "grizzly-public-school": [
-    "cover",
-    "desktop-1",
-    "desktop-2",
-    "mobile-1"
-  ],
-  "jtgc": [
-    "cover",
-    "desktop-1",
-    "desktop-2",
-    "mobile-1"
-  ],
-  "kl-boox-house": [
-    "cover",
-    "desktop-1",
-    "desktop-2",
-    "mobile-1"
-  ]
+  "fastq": {
+    "cover": ".webp",
+    "desktop-1": ".webp",
+    "desktop-2": ".webp",
+    "mobile-1": ".webp"
+  },
+  "grizzly-public-school": {
+    "cover": ".webp",
+    "desktop-1": ".webp",
+    "desktop-2": ".webp",
+    "mobile-1": ".webp"
+  },
+  "jtgc": {
+    "cover": ".webp",
+    "desktop-1": ".webp",
+    "desktop-2": ".webp",
+    "mobile-1": ".webp"
+  },
+  "kl-boox-house": {
+    "cover": ".webp",
+    "desktop-1": ".webp",
+    "desktop-2": ".webp",
+    "mobile-1": ".webp"
+  }
 }
